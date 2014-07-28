@@ -1,6 +1,7 @@
 package com.mcwilliams.gymbuddy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,7 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GymLocator extends Activity implements GooglePlayServicesClient.ConnectionCallbacks,
-        GooglePlayServicesClient.OnConnectionFailedListener  {
+        GooglePlayServicesClient.OnConnectionFailedListener, GoogleMap.OnInfoWindowClickListener  {
 
     private GoogleMap mMap;
     RequestQueue queue;
@@ -101,7 +103,21 @@ public class GymLocator extends Activity implements GooglePlayServicesClient.Con
         }
 
         LatLng newPosition = new LatLng(gymLocations.get(0).getGeometry().getGymCooridinates().getLatitude(),gymLocations.get(0).getGeometry().getGymCooridinates().getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newPosition, 10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newPosition, 12));
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        String markerTitle = marker.getTitle();
+        for(GymLocation location: gymLocations){
+            if (location.getGymName().equals(markerTitle)){
+                Intent goToRegistration = new Intent();
+                goToRegistration.putExtra("gymName", markerTitle);
+                goToRegistration.putExtra("gymAddress", location.getAddress());
+                setResult(RESULT_OK, goToRegistration);
+                finish();
+            }
+        }
     }
 
     @Override
@@ -170,6 +186,7 @@ public class GymLocator extends Activity implements GooglePlayServicesClient.Con
     public void onConnected(Bundle dataBundle) {
         // Display the connection status
         Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+        mMap.setOnInfoWindowClickListener(this);
         getGymLocation();
 
     }

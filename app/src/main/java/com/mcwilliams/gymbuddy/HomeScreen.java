@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.mcwilliams.gymbuddy.R;
+import com.parse.ParseUser;
 
 public class HomeScreen extends Activity {
 
@@ -12,6 +15,8 @@ public class HomeScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        ParseUser user = ParseUser.getCurrentUser();
+        Toast.makeText(this, user.get("firstName").toString(), Toast.LENGTH_SHORT).show();
     }
 
 

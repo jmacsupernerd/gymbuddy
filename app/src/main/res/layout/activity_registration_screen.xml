@@ -10,16 +10,17 @@
         android:layout_height="wrap_content"
         android:text="User Name"
         android:id="@+id/textView"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:id="@+id/editText"
+        android:layout_height="wrap_content"
+        android:id="@+id/etUserName"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignBottom="@+id/textView" />
+        android:layout_alignLeft="@+id/etFirstName"
+        android:layout_alignBottom="@+id/textView"
+        android:textSize="14sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,29 +28,46 @@
         android:text="Email"
         android:id="@+id/textView2"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:id="@+id/editText2"
+        android:layout_height="wrap_content"
+        android:id="@+id/etEmail"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/editText3" />
+        android:layout_alignLeft="@+id/etFirstName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etPassword"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignLeft="@+id/etFirstName"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First Name"
         android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/rlGymInfo"
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:id="@+id/editText3"
+        android:layout_height="wrap_content"
+        android:id="@+id/etFirstName"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@+id/textView3"
@@ -62,27 +80,76 @@
         android:text="Last Name"
         android:id="@+id/textView4"
         android:layout_below="@+id/textView3"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:id="@+id/editText4"
+        android:layout_height="wrap_content"
+        android:id="@+id/etLastName"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignLeft="@+id/editText3" />
+        android:layout_alignLeft="@+id/etFirstName" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find My Gym"
-        android:id="@+id/textView5"
-        android:onClick="onFindGymCLicked"
-        android:layout_below="@+id/editText4"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:textSize="16sp"
-        android:padding="5dp"
-        android:clickable="true" />
+        android:id="@+id/rlGymInfo"
+        android:layout_below="@+id/etPassword">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rlGetGymInfo"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find My Gym"
+                android:id="@+id/textView5"
+                android:onClick="onFindGymCLicked"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textStyle="bold|italic" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rlGotGymInfo"
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/tvGymName"
+                android:layout_toRightOf="@+id/tvGymLabel"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="30dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/tvGymAddress"
+                android:layout_below="@+id/tvGymName"
+                android:layout_alignLeft="@+id/tvGymName"
+                android:layout_marginRight="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gym      "
+                android:id="@+id/tvGymLabel" />
+        </RelativeLayout>
+    </RelativeLayout>
+
 </RelativeLayout>
